@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--文档：https://blog.csdn.net/isea533/article/details/42102297-->
+
+<generatorConfiguration>
+
+    <properties resource="application.yml"/>
+
+    <classPathEntry location="D:\Projects\webProject\store\src\main\resources\lib\mysql-connector-java-5.1.6-bin.jar" />
+
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.lqm.util.MyMapper"/>
+        </plugin>
+
+        <commentGenerator >
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/store?characterEncoding=utf-8&amp;useSSL=false"
+                userId="root"
+                password="123456">
+        </jdbcConnection>
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="com.lqm.pojo" targetProject="src/test/java">
+            <!-- 该属性只对MyBatis3有效，如果true就会使用构造方法入参，如果false就会使用setter方式。默认为false。 -->
+            <property name="constructorBased" value="true" />
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 生成mapxml文件 -->
+        <sqlMapGenerator targetPackage="com.lqm.mapper" targetProject="src/test/java">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+
+        <!-- 生成mapxml对应client，也就是接口dao -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lqm.dao" targetProject="src/test/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+
+        <!--要生成的表-->
+        <!--enableCountByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询总条数语句（用于分页的总条数查询）；-->
+        <!--去掉表前缀参考：https://www.cnblogs.com/yulinlewis/p/10106080.html-->
+        <!--  生成全部表-->
+        <!--<table tableName="%" schema="" enableCountByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<domainObjectRenamingRule searchString="^Store" replaceString="" />-->
+        <!--</table>-->
+
+       <!-- <table tableName="store_user" >
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+
+
+         <table tableName="store_user" schema="" enableCountByExample="false"
+                enableDeleteByExample="false" enableUpdateByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false">
+             <domainObjectRenamingRule searchString="^Store" replaceString="" />
+           </table>
+
+
+
+
+    </context>
+</generatorConfiguration>

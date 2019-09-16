@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqm.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.lqm.pojo.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="BIGINT" property="orderNo" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="shipping_id" jdbcType="INTEGER" property="shippingId" />
+    <result column="payment" jdbcType="DECIMAL" property="payment" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="postage" jdbcType="INTEGER" property="postage" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="close_time" jdbcType="TIMESTAMP" property="closeTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, order_no, user_id, shipping_id, payment, payment_type, postage, status, payment_time,
+    send_time, end_time, close_time, create_time, update_time
+  </sql>
+
+
+  <select id="selectByUserIdAndOrderNo" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    from store_order
+    where order_no = #{orderNo}
+    and user_id = #{userId}
+  </select>
+
+
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="long">
+    SELECT
+    <include refid="Base_Column_List">
+    </include>
+    FROM  store_order
+    where order_no = #{orderNo}
+  </select>
+
+
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from store_order
+    where user_id = #{userId}
+    order by create_time desc
+  </select>
+
+  <select id="selectByUserIdAndStatus" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from store_order
+    <where>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="status != null">
+        and status = #{status}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from store_order
+    ORDER BY  create_time desc
+  </select>
+
+
+
+  <update id="confirmReceivedGoods" parameterType="map" >
+    UPDATE store_order
+    SET status = 50
+    where order_no = #{orderNo}
+    and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectOrderStatusByCreateTime" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from store_order
+    where status = #{status}
+    <![CDATA[
+    and create_time <= #{date}
+    ]]>
+    order by create_time desc
+  </select>
+
+  <update id="closeOrderByOrderId" parameterType="int" >
+    UPDATE store_order
+    SET status = 0
+    where id = #{id}
+  </update>
+
+  
+</mapper>
