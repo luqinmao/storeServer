@@ -17,11 +17,12 @@
     <result column="receiver_zip" jdbcType="VARCHAR" property="receiverZip" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_default" jdbcType="BIT" property="isDefault" />
   </resultMap>
 
   <sql id="Base_Column_List" >
     id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, receiver_city,
-    receiver_district, receiver_address, receiver_zip, create_time, update_time
+    receiver_district, receiver_address, receiver_zip, create_time, update_time, is_default
   </sql>
 
 
@@ -29,12 +30,12 @@
     insert into store_shipping (id, user_id, receiver_name,
     receiver_phone, receiver_mobile, receiver_province,
     receiver_city, receiver_district, receiver_address,
-    receiver_zip, create_time, update_time
+    receiver_zip, create_time, update_time, is_default
     )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR},
     #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR},
     #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR},
-    #{receiverZip,jdbcType=VARCHAR}, now(), now()
+    #{receiverZip,jdbcType=VARCHAR}, now(), now(),#{isDefault,jdbcType=BIT}
     )
   </insert>
 
@@ -77,6 +78,9 @@
       </if>
       <if test="updateTime != null" >
         update_time = now(),
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

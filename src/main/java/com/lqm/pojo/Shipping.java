@@ -73,6 +73,13 @@ public class Shipping {
     private Date updateTime;
 
     /**
+     * 默认地址
+     */
+    @Column(name = "is_default")
+    private boolean isDefault;
+
+
+    /**
      * @return id
      */
     public Integer getId() {
@@ -274,5 +281,14 @@ public class Shipping {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+
+    public boolean getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(boolean isDefault) {
+        this.isDefault = isDefault;
     }
 }

@@ -3,10 +3,10 @@
 
 
 记录：
-    war包 javax/el/ELManager错误解决：
-    错误原因是因为tomcat7中的el-api2.2 版本太低导致
-    方法一:直接下载一个el-api3.x.jar替换tomcat中的el-api2.2.jar
-    方法二,直接下载tomcat8安装解决问题
++ war包 javax/el/ELManager错误解决：
++ 错误原因是因为tomcat7中的el-api2.2 版本太低导致
++ 方法一:直接下载一个el-api3.x.jar替换tomcat中的el-api2.2.jar
++ 方法二,直接下载tomcat8安装解决问题
 
 
 
@@ -16,10 +16,15 @@ backend模块的controller类，登录与用户管理员权限拦截在Authority
 
 
 过滤器匹配：
-    	//匹配com.lqm.controller包下的所有方法
-    //	@Pointcut("execution(public * com.lqm.controller.*.*(..))")
-    	//匹配com.lqm.controller包及其子包下的所有方法
-    	@Pointcut("execution(* com.lqm.controller..*.*(..))")
++ //匹配com.lqm.controller包下的所有方法
+      //	@Pointcut("execution(public * com.lqm.controller.*.*(..))")
++  //匹配com.lqm.controller包及其子包下的所有方法
+       	@Pointcut("execution(* com.lqm.controller..*.*(..))")	
+    	
+
+
+
+
 
 
 jackson config不生效记录：之前AuthorityInterceptorConfig 我继承WebMvcConfigurationSupport，

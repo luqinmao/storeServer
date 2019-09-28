@@ -25,10 +25,17 @@ public class ShippingServiceImpl implements IShippingService {
 
     public ServerResponse add(Integer userId, Shipping shipping){
         shipping.setUserId(userId);
+        //无地址则设置为默认
+        List<Shipping> shippings = shippingMapper.selectByUserId(userId);
+        if (shippings ==null || shippings.size()<=0){
+            shipping.setIsDefault(true);
+        }
+
         int rowCount = shippingMapper.insert(shipping);
         if(rowCount > 0){
             return ServerResponse.createBySuccess("新建地址成功",shipping.getId());
         }
+
         return ServerResponse.createByErrorMessage("新建地址失败");
     }
 
