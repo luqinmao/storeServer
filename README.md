@@ -1,4 +1,4 @@
-## Android+Java后端（Springboot，Mybatis）小店开源小项目
+## Android+Java后端（Springboot，Mybatis）开源小商店项目
 
 ### 简介
 
