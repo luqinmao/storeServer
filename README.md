@@ -1,8 +1,15 @@
-## Android+Java后端（Springboot，Mybatis）小店开源小项目
+## Android+Java后端（Springboot，Mybatis）开源小商店项目
 
 ### 简介
 
-豆腐小店是自己的学习项目，因为自己做Android的，然后想学一些后端的技术，所以Android端和后端(Springboot，Mybatis)一起写了。Android使用基本的MVC模式，尽可能的写得简单，因为主要还是学习后端，后端使用流行的SpringBoot+Mybatis框架，搭建一个可扩展分布式架构。
+豆腐小店是自己的学习项目，主要实现一个商城的下单、购物车、支付等基本功能，熟悉后端的开发过程，因为自己做Android的，然后想学一些后端的技术，所以Android端和后端(Springboot，Mybatis)一起写了。Android使用基本的MVC模式，尽可能的写得简单，因为主要还是学习后端，后端使用流行的SpringBoot+Mybatis框架，设计一个可扩展分布式架构。
+
+### 代码链接
+
+Android端代码：[https://github.com/luqinmao/storeClient](https://github.com/luqinmao/storeClient)
+
+Java后端代码：[https://github.com/luqinmao/storeServer](https://github.com/luqinmao/storeServer)
+
 
 ### 使用的技术
 
@@ -70,9 +77,13 @@ src
 
 #### 项目相关
 
-- > 因为我没有支付宝企业账号，所以项目使用的支付宝支付为沙盒环境（测试环境），所以在安卓端下单支付钱的时候只能用支付宝提供的沙箱版支付宝APP进行支付，下载地址：https://openhome.alipay.com/platform/appDaily.htm?tab=tool， 买家测试账号：aemkne6182@sandbox.com  密码：111111
+- > 因为我没有支付宝企业账号，所以项目使用的支付宝支付为沙盒环境（测试环境），所以在安卓端试用支付功能时只能用沙箱版支付宝APP进行支付，需要在手机安装沙箱版支付宝APP，请自行下载安装，下载地址：https://openhome.alipay.com/platform/appDaily.htm?tab=tool， 买家测试账号：aemkne6182@sandbox.com  密码：111111
 
 - 启动后端项目之前需要先启动Redis，不然会报错启动不了
+
+- 数据库文件放在doc文件夹下面,即store.sql文件
+
+- Android端的运行时候根据你运行在手机还是模拟器，需要求改base文件夹下AppConst文件的SERVER_ADDRESS请求地址
 
 - 请求接口需要带上请求头login_token，值从登陆接口获得，用户测试账号：admin,密码：admin
 
@@ -83,7 +94,10 @@ src
 #### 其他相关
 
 - 本项目学习参考了：https://coding.imooc.com/class/chapter/144.html#Anchor
+
 - 因为本人能力有限，项目代码还存在许多不足与不好的代码，请见谅。
+
+  
 
 
 
@@ -115,12 +129,12 @@ src
 
 #### Android前端效果图
 
-![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/1.png)
-![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/2.png)
-![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/3.png)
-![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/4.png)
-![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/5.png)
-![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/6.png)
+![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/sp1.png)
+![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/sp2.png)
+![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/sp3.png)
+![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/sp4.png)
+![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/sp5.png)
+![](https://lqmdemo.oss-cn-beijing.aliyuncs.com/store/sp6.png)
 
 #### 项目代码图
 
